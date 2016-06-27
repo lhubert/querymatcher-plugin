@@ -1,8 +1,9 @@
-package com.hurence.logisland.querymatcher;
+package com.hurence.logisland.rules;
 
 import com.hurence.logisland.event.Event;
 import com.hurence.logisland.event.serializer.EventKryoSerializer;
-import com.hurence.logisland.integration.testUtils.EmbeddedKafkaEnvironment;
+import com.hurence.logisland.integration.testutils.EmbeddedKafkaEnvironment;
+import com.hurence.logisland.querymatcher.MatchingRule;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
@@ -16,7 +17,7 @@ import java.util.*;
 /**
  * Created by lhubert on 20/04/16.
  */
-public class RulesConsumer {
+public class KafkaRulesConsumer {
 
     /**
      * This method will consume the events stored in the topic and transform them to
@@ -36,7 +37,7 @@ public class RulesConsumer {
 
         // deleting zookeeper information to make sure the consumer starts from the beginning
         // see https://stackoverflow.com/questions/14935755/how-to-get-data-from-old-offset-point-in-kafka
-        context.getZkClient().delete("/consumers/group0");
+        // context.getZkClient().delete("/consumers/group0");
 
         // starting consumer
         Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
